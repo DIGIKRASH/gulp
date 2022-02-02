@@ -13,10 +13,8 @@ export const html = () => {
         ))
         .pipe(fileinclude())
         .pipe(
-            app.plugins.ifPlugin(
-                app.isBuild,
-                webpHtmlNosvg()
-            )
+
+            webpHtmlNosvg()
         )
         .pipe(
             app.plugins.ifPlugin(
