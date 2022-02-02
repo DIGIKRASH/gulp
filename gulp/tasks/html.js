@@ -2,6 +2,7 @@ import fileinclude from "gulp-file-include";
 import webpHtmlNosvg from "gulp-webp-html-nosvg";
 import versionNumber from "gulp-version-number";
 import gulp_pug from "gulp-pug";
+import htmlmin from "gulp-htmlmin";
 
 export const html = () => {
     return app.gulp.src(app.path.src.html)
@@ -13,8 +14,16 @@ export const html = () => {
         ))
         .pipe(fileinclude())
         .pipe(
-
-            webpHtmlNosvg()
+            app.plugins.ifPlugin(
+                app.isBuild,
+                webpHtmlNosvg()
+            )
+        )
+        .pipe(
+            app.plugins.ifPlugin(
+                app.isBuild,
+                htmlmin({ collapseWhitespace: true })
+            )
         )
         .pipe(
             app.plugins.ifPlugin(

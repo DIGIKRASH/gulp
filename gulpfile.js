@@ -46,7 +46,8 @@ const fonts = gulp.series(otf2ttf, ttf2woff, fontsStyle);
 const mainTasks = gulp.series(fonts, gulp.parallel(copy, html, pug, scss, js, img, svgSprite));
 
 // Построение сценариев выполнения задач
-const dev = gulp.series(reset, mainTasks, gulp.parallel(watcher, server));
+const start = gulp.series(reset, mainTasks, gulp.parallel(watcher, server));
+const dev = gulp.series(reset, mainTasks);
 const build = gulp.series(reset, mainTasks);
 const deployZIP = zip;
 const deployFTP = ftp;
@@ -58,4 +59,4 @@ export { deployZIP }
 export { deployFTP }
 
 // Выполлнение сценария по умолчанию
-gulp.task('default', dev);
+gulp.task('default', start);
