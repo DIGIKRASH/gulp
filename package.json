@@ -42,7 +42,7 @@
   },
   "scripts": {
     "dev": "gulp",
-    "build": "gulp build --build",
+    "dist": "gulp build --build",
     "zip": "gulp deployZIP --build",
     "ftp": "gulp deployFTP --build"
   },

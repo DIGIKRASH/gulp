@@ -33,9 +33,6 @@ export const html = () => {
                             'js',
                         ]
                     },
-                    'output': {
-                        'file': 'gulp/version.json'
-                    }
                 })
             )
         )
@@ -84,9 +81,6 @@ export const pug = () => {
                             'js',
                         ]
                     },
-                    'output': {
-                        'file': 'gulp/version.json'
-                    }
                 })
             )
         )
