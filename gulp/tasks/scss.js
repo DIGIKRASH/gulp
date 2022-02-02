@@ -21,41 +21,21 @@ export const scss = () => {
         .pipe(sass({
             outputStyle: 'expanded'
         }))
-        .pipe(
-            app.plugins.ifPlugin(
-                app.isBuild,
-                groupCssMediaQueries()
-            )
-        )
-        .pipe(
-            app.plugins.ifPlugin(
-                app.isBuild,
-                webpcss(
-                    {
-                        webpClass: ".webp",
-                        noWebpClass: ".no-webp",
-                    }
-                )
-            )
-        )
-        .pipe(
-            app.plugins.ifPlugin(
-                app.isBuild,
-                autoprefixer({
-                    grid: true,
-                    overrideBrowserslist: ["last 3 versions"],
-                    cascade: true,
-                })
-            )
-        )
+        .pipe(groupCssMediaQueries())
+        .pipe(webpcss(
+            {
+                webpClass: ".webp",
+                noWebpClass: ".no-webp",
+            }
+        ))
+        .pipe(autoprefixer({
+            grid: true,
+            overrideBrowserslist: ["last 3 versions"],
+            cascade: true,
+        }))
         // Обычный не сжатый файл
         .pipe(app.gulp.dest(app.path.build.css))
-        .pipe(
-            app.plugins.ifPlugin(
-                app.isBuild,
-                cleanCss()
-            )
-        )
+        .pipe(cleanCss())
         .pipe(rename({
             extname: ".min.css"
         }))

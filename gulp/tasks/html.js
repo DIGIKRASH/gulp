@@ -13,12 +13,7 @@ export const html = () => {
             })
         ))
         .pipe(fileinclude())
-        .pipe(
-            app.plugins.ifPlugin(
-                app.isBuild,
-                webpHtmlNosvg()
-            )
-        )
+        .pipe(webpHtmlNosvg())
         .pipe(
             app.plugins.ifPlugin(
                 app.isBuild,
@@ -57,16 +52,25 @@ export const pug = () => {
                 message: "Error: <%= error.message %>",
             })
         ))
-        .pipe(gulp_pug({
-            // Сжатие HTML файла
-            pretty: true,
-        }))
+        .pipe(
+            app.plugins.ifPlugin(
+                !app.isBuild,
+                gulp_pug({
+                    // Сжатие HTML файла
+                    pretty: true,
+                })
+            )
+        )
         .pipe(
             app.plugins.ifPlugin(
                 app.isBuild,
-                webpHtmlNosvg()
+                gulp_pug({
+                    // Сжатие HTML файла
+                    pretty: false,
+                })
             )
         )
+        .pipe(webpHtmlNosvg())
         .pipe(
             app.plugins.ifPlugin(
                 app.isBuild,
