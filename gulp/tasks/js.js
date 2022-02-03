@@ -1,26 +1,17 @@
-import webpack from 'webpack-stream';
+import minify from 'gulp-minify';
 import rename from 'gulp-rename';
+import fileinclude from 'gulp-file-include';
 
 export const js = () => {
-    return app.gulp.src(app.path.src.js, { sourcemaps: app.isDev })
+    return app.gulp.src(app.path.src.js, { sourcemaps: true })
         .pipe(app.plugins.plumber(
             app.plugins.notify.onError({
                 title: "JS",
                 message: "Error: <%= error.message %>",
             })
         ))
-        .pipe(webpack({
-            mode: app.isBuild ? 'production' : 'development',
-            output: {
-                filename: 'script.min.js',
-            }
-        }))
-        
-        // Обычный не сжатый файл
-        .pipe(app.gulp.dest(app.path.build.js))
-        .pipe(rename({
-            extname: ".min.css"
-        }))
+        .pipe(fileinclude())
+        .pipe(minify())
         .pipe(app.gulp.dest(app.path.build.js))
         .pipe(app.plugins.browserSync.stream())
 }
