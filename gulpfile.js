@@ -29,8 +29,8 @@ import fonter from 'gulp-fonter'; // Для шрифтов
 import ttf2woff2 from 'gulp-ttf2woff2'; // Преобразование ttf в woff
 import gulpSvgSprite from 'gulp-svg-sprite'; // Создание спрайтов svg
 import zipPlugin from 'gulp-zip'; // Создание zip-архива
-import vinylFTP from 'vinyl-ftp'; //
-import util from 'gulp-util'; //
+import vinylFTP from 'vinyl-ftp'; // Для FTP
+import util from 'gulp-util'; // Для FTP
 
 // Данные FTP
 let configFTP = {

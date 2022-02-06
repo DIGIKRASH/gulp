@@ -2,83 +2,87 @@
 $font: "Sans Serif";
 $main: #1c1c1c;
 
-// ------- Global-Tags --------
+
+// --------- Global-Tags ----------
 html {
-    box-sizing: border-box;
-    overflow-x: hidden;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  &.hidden {
+    overflow-y: hidden;
+  }
 }
 *,
-*::before,
-*::after {
-    box-sizing: inherit;
+*::after,
+*::before {
+  box-sizing: inherit;
 }
 body {
-    font-family: $font;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 18px;
-    color: $main;
-    min-width: 320px;
-    position: relative;
-    overflow-x: hidden;
+  position: relative;
+  overflow-x: hidden;
+  min-width: 320px;
+  font-family: $font;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+  color: $main;
 }
 a {
-    text-decoration: none;
-    display: inline-block;
-    color: $main;
+	text-decoration: none;
+  color: $main;
+  display: inline-block;
 }
 button {
-    border: none;
-    outline: none;
-    cursor: pointer;
-    background-color: transparent;
-    padding: 0;
-    font-family: inherit;
+  outline: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  background-color: transparent;
+  cursor: pointer;
 }
 input {
-    background-color: transparent;
-    border: none;
-    outline: none;
-    font-family: inherit;
+  outline: none;
+  border: none;
+  font-family: inherit;
+  background-color: transparent;
 }
 textarea {
-    resize: none;
-    font-family: inherit;
-    border: none;
-    background-color: transparent;
-    outline: none;
+  outline: none;
+  border: none;
+  font-family: inherit;
+  background-color: transparent;
+  resize: none;
 }
 section {
-    position: relative;
+  position: relative;
 }
 
 // --------- Global-Classes ----------
 .container {
-    max-width: 1170px;
-    margin: 0 auto;
-    padding: 0 15px;
+  margin: 0 auto;
+  padding: 0 15px;
+  max-width: 1170px;
 }
 .wrapper {
-    position: relative;
-    &::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background-color: rgba(#000, 0.3);
-        z-index: 0;
-    }
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 0;
+    background-color: rgba(#000, 0.3);
+  }
 }
 
 // --------- ScrollBar ----------
 ::-webkit-scrollbar {
-    width: 5px;
+  width: 5px;
 }
 ::-webkit-scrollbar-thumb {
-    background-color: #fff;
+  background-color: #fff;
 }
 ::-webkit-scrollbar-track {
-    background-color: #1c1c1c;
+  background-color: #1c1c1c;
 }
