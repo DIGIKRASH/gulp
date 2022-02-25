@@ -1,5 +1,5 @@
 // Проверка поддержки webp, добавление класс webp или no-webp для HTML
-function isWebp() {
+(function isWebp() {
     // Проверка поддержки webp
     function testWebP(callback) {
         let webP = new Image();
@@ -13,8 +13,7 @@ function isWebp() {
         let className = support === true ? 'webp' : 'no-webp';
         document.documentElement.classList.add(className);
     })
-}
-isWebp();
+}())
 
 
 // Jquery ----------------
@@ -26,4 +25,4 @@ isWebp();
 
 
 // Main-JS -----------------
-@@include('../js/main.js');
+@@include('./main.js');

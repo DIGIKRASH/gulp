@@ -3,14 +3,13 @@ import gulp from 'gulp';
 // node-modules
 import * as nodePath from 'path';
 // Все Плагины
-import replace from "gulp-replace"; // Поиск и замена
 import plumber from "gulp-plumber"; // Обработка ошибок
 import notify from "gulp-notify"; // Сообщения (подсказки)
 import browserSync from "browser-sync"; // Локальный сервер
 import newer from "gulp-newer"; // Проверка обновления
 import ifPlugin from "gulp-if"; // Условное ветвление
 import fileinclude from "gulp-file-include"; // Соединение файлов в один
-import webpHtmlNosvg from "gulp-webp-html-nosvg"; // Вставка webp в html
+import webpHtml from "gulp-webp-html-nosvg"; // Вставка webp в html
 import versionNumber from "gulp-version-number"; //
 import gulp_pug from "gulp-pug"; // Преобразование pug в html
 import htmlmin from "gulp-htmlmin"; // Минифицируем HTML
@@ -119,7 +118,7 @@ const html = () => {
             })
         ))
         .pipe(fileinclude())
-        .pipe(webpHtmlNosvg())
+        .pipe(webpHtml())
         .pipe(
             ifPlugin(
                 app.isBuild,
@@ -173,7 +172,7 @@ const pug = () => {
                 })
             )
         )
-        .pipe(webpHtmlNosvg())
+        .pipe(webpHtml())
         .pipe(
             ifPlugin(
                 app.isBuild,
@@ -369,6 +368,21 @@ const svgSprite = () => {
                 stack: {
                     sprite: `../icons/icons.svg`,
                 }
+            },
+            shape: {
+                transform: [
+                    {
+                        svgo: {
+                            plugins: [
+                                {
+                                    removeAttrs: {
+                                        attrs: ['fill', 'stroke'],
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
             }
         }))
         .pipe(gulp.dest(path.build.img))
